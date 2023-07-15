@@ -15,13 +15,21 @@ We have several steps, please execute commands from root path of project
 
 ```docker-compose up -d```
 
-#### Execute migrations and sync with api:
+#### Install packages:
 
-```docker exec -it app php artisan migrate && php artisan api:sync```
+```docker exec -it app bash```
 
-#### Execute tests:
+```composer install```
 
-```docker exec -it app php artisan test```
+```npm install --save-dev vite```
+
+```npm run build```
+
+#### Execute migrations and s`ync with api:
+
+```php artisan migrate && php artisan api:sync```
+
+```exit```
 
 #### Start our server:
 
