@@ -17,6 +17,9 @@ RUN pecl install xdebug && docker-php-ext-enable xdebug
 ENV COMPOSER_ALLOW_SUPERUSER=1
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+COPY . /var/www/html
+WORKDIR /var/www/html
+
 # Set recommended PHP.ini settings for development
 RUN echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "display_startup_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
@@ -33,7 +36,5 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
 
 # Install npm
 RUN npm install -g npm@latest
-
-WORKDIR /var/www/html
 
 CMD ["php-fpm"]
