@@ -14,6 +14,7 @@ RUN docker-php-ext-install pdo_mysql mbstring zip
 RUN pecl install xdebug && docker-php-ext-enable xdebug
 
 # Install Composer
+ENV COMPOSER_ALLOW_SUPERUSER=1
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Set recommended PHP.ini settings for development
